@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Delegate</title>
+    <style>
+        *{padding: 0; margin: 0;}
+        #container{margin: 20px auto; padding: 30px 20px; width: 350px; background-color: darkgreen; color:honeydew;}
+        #heading{margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dotted gray}
+        #myList{list-style: none;}
+        li {padding: 3px 0px; border-bottom: 1px solid gray; margin-top: 10px;}
+        ul {padding: 5px 20px;}
+        #myBtn {background-color: indianred; border: 1px solid indianred; padding: 8px 20px; margin-top: 20px; color: whitesmoke; font-weight: 500; border-radius: 20px; outline: none; cursor: pointer; font-size: 16px;}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2 id="heading">
+            My List Item
+        </h2>
+        <ul id="myList">
+            <li class="item">Lorem, ipsum.</li>
+            <li class="item">Modi, sunt.</li>
+            <li class="item">Nobis, quis.</li>
+            <li class="item">Quos, expedita?</li>
+            <li class="item">Assumenda, minus?</li>
+            <li class="item">Eveniet, deleniti.</li>
+        </ul>
+        <button id="myBtn">Add New Item</button>
+    </div>
+
+    <script>
+        // New Item Add Handler
+        const myBtn = document.getElementById("myBtn");
+        myBtn.addEventListener("click", function (event) {
+            const myList = document.getElementById("myList");
+            const li = document.createElement('li');
+            li.innerText = "Added New Item";
+            myList.appendChild(li);
+        });
+        const myList = document.getElementById("myList");
+        myList.addEventListener("click", function (event){
+            console.log(this, event.target);
+            // event.target.parentNode.removeChild(event.target);
+            if(event.target !== myList){
+                event.target.parentNode.removeChild(event.target);
+            }
+        });
+
+
+        // You Can use this system. But It couldn't remove the new item.
+
+        // let items = document.getElementsByClassName("item");
+        // for (let i = 0; i < items.length; i++) {
+        //     const item = items[i];
+        //     item.addEventListener("click", function (event) {
+        //         // console.log(this, event.target.parentNode);
+        //         event.target.parentNode.removeChild(event.target);
+        //     });
+        // }
+        // const myBtn = document.getElementById("myBtn");
+        // myBtn.addEventListener("click", function (event) {
+        //     const myList = document.getElementById("myList");
+        //     const li = document.createElement('li');
+        //     li.innerText = "Added New Item";
+        //     myList.appendChild(li);
+        // });
+    </script>
+</body>
+</html>
