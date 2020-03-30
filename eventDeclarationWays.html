@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Decration Ways</title>
+</head>
+<body>
+    <div class="test-purpose" style="border: 1px solid gray; width: 500px; text-align:center; padding: 10px 0px;">
+        <h2 id="testheading" onclick="handleHeading()">Lorem ipsum dolor sit amet.</h2>
+        <p id="test-para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, harum!</p>
+        <button id="testBtn">Click Here</button>
+    </div>
+    <div id="todo-wrapper">
+        <div class="todo-content">
+            <h4>Name: Nazmul Hoque</h4>
+            <p>Address: Halishahar</p>
+            <p>Email: nazmul.hoquecu98@gmail.com</p>
+            <button class="btn">Delete</button>
+        </div>
+        <div class="todo-content">
+            <h4>Name: Marshed</h4>
+            <p>Address: Halishahar</p>
+            <p>Email: nazmul.hoquecu98@gmail.com</p>
+            <button class="btn">Delete</button>
+        </div>
+        <div class="todo-content">
+            <h4>Name: Anayet</h4>
+            <p>Address: Halishahar</p>
+            <p id="email">Email: nazmul.hoquecu98@gmail.com</p>
+            <button class="btn">Delete</button>
+        </div>
+    </div>
+    
+    <script>
+        // there are 3 ways to declare a event handler
+
+        // First Way :) It's interesting. I love to use it.
+        const testBtn = document.getElementById("testBtn");
+        testBtn.addEventListener('click', function(event){
+            console.log(event.target.innerText);
+            event.target.innerText = "Clicked"
+            event.target.style.backgroundColor = "red";
+            event.target.style.border = "1px solid red";
+        });
+
+        // Second Way :) If the task of handler is same then you can use it.....
+        function paraHandler(event) {
+            event.target.innerText = "Amare Click Marche....."
+        }
+        document.getElementById("test-para").addEventListener('click', paraHandler);
+
+        // Third Way :) It's a shortcut way....But it's not good practice.
+        function handleHeading(event) {
+            alert("already added !");
+        }
+
+        // Extra Implementation of Event Handler.....
+        const todoWrapper = document.getElementById('todo-wrapper');
+        const btns = document.getElementsByClassName('btn');
+        for (let i = 0; i < btns.length; i++) {
+            const btn = btns[i];
+            btn.addEventListener("click", function(event) {
+                let confirmed = confirm("Are Sure to Delete!");
+                confirmed && 
+                event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+            })  
+        }
+       
+    </script>
+</body>
+</html>
